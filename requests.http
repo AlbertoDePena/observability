@@ -1,0 +1,32 @@
+@host = http://localhost:8080
+
+### Liveness probe (always 200 if process is running)
+GET {{host}}/health/live
+
+### Readiness probe (checks downstream dependencies)
+GET {{host}}/health/ready
+
+### Process payment (50/50 success or gateway timeout)
+GET {{host}}/process
+
+### Create order - valid
+POST {{host}}/orders
+Content-Type: application/json
+
+{
+  "item": "widget",
+  "quantity": 3,
+  "customer": "cust_456"
+}
+
+### Create order - invalid body
+POST {{host}}/orders
+Content-Type: application/json
+
+not json
+
+### Forced error
+GET {{host}}/error
+
+### Trigger panic (tests Recoverer middleware)
+GET {{host}}/panic
