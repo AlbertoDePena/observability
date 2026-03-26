@@ -72,7 +72,7 @@ func StartSpan(ctx context.Context, name string) (context.Context, *Span) {
 		logger:    parent.With(slog.String("span_name", name), slog.String("span_id", spanID)),
 	}
 
-	return context.WithValue(ctx, loggerKey, s.logger), s
+	return WithLogger(ctx, s.logger), s
 }
 
 func (s *Span) SetError(err error) {
