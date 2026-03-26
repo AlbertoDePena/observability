@@ -140,7 +140,7 @@ func Middleware(l *slog.Logger) func(http.Handler) http.Handler {
 			ww := middleware.NewWrapResponseWriter(w, r.ProtoMajor)
 			start := time.Now()
 
-			ctx := context.WithValue(r.Context(), loggerKey, reqLogger)
+			ctx := WithLogger(r.Context(), reqLogger)
 			next.ServeHTTP(ww, r.WithContext(ctx))
 
 			logArgs := []any{
