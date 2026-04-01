@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	observability "observability/pkg"
+	observability "observability/pkg/observability"
 )
 
 // LivenessCheck returns 200 OK if the server is running.

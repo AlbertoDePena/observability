@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"time"
 
-	observability "observability/pkg"
+	observability "observability/pkg/observability"
 )
 
 // RunBackgroundService is a long-running background service that runs alongside
